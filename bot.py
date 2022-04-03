@@ -14,7 +14,8 @@ api = OpenSkyApi(config[1].strip(), config[2].strip())
 print(config[4])
 
 while True:
-    curr_state = api.get_states(icao24=config[4].strip()) # Change the 4 back to zero for final product
+    # curr_state = api.get_states(icao24=config[0].strip())
+    curr_state = api.get_states(icao24=config[4].strip())
     
     # print(curr_state)
     
@@ -31,10 +32,9 @@ while True:
     
     locat = geocode.reverse(str(lon), str(lat))
     
-    print(locat)
-    
-    for i in locat:
-        print(i)
+    with open("keys2.txt", "w") as file:
+        for i in dic:
+            file.write("self." + i)
     
     break
     

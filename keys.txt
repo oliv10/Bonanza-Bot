@@ -1,0 +1,9 @@
+place_id
+licence
+osm_type
+osm_id
+lat
+lon
+display_name
+namedetails
+boundingbox
