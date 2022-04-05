@@ -28,4 +28,4 @@ import json
 
 "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.712784,-74.005941&rankby=distance&type=airport&key=<Your API Key>"
 
-# Try the google places API to find nearest airport once plane has landed
+# Try the google places API to find nearest airport once plane has landed or is no longer detected
