@@ -1,9 +1,18 @@
 from aircraft import Aircraft
+import time
 
-a = Aircraft("a02c04")
+a = Aircraft("a20d77")
+a.start()
 
-print(a.getAirData())
+prev = None
+curr = None
 
-# data = a.currentAirData()
-
-# print(data.latitude)
+while True:
+    curr = a.currentAirData
+    if curr != prev:
+        print(curr)
+        prev = curr
+        if curr.getLanded():
+            print("LANDED!")
+        else:
+            print("FLYING @ " + str(curr.getVelocity()) + " Knots")

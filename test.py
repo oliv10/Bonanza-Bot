@@ -13,11 +13,19 @@
 
 # print(data)
 
-import geocode
+# import geocode
 
-resp = geocode.reverse("40.0035044", "-85.96460575167049")
+# resp = geocode.reverse("40.0035044", "-85.96460575167049")
 
-print(resp)
+# print(resp)
 
-for i in resp:
-    print(i)
+# for i in resp:
+#     print(i)
+
+
+import requests
+import json
+
+"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.712784,-74.005941&rankby=distance&type=airport&key=<Your API Key>"
+
+# Try the google places API to find nearest airport once plane has landed

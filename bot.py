@@ -34,7 +34,7 @@ while True:
     
     with open("keys2.txt", "w") as file:
         for i in dic:
-            file.write("self." + i)
+            file.write(i + ": str = None, ")
     
     break
     

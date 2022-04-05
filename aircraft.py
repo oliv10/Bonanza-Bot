@@ -1,10 +1,11 @@
 import time
 import threading
+from unittest import removeResult
 from opensky.opensky_api import OpenSkyApi
 
 class AirData():
     
-    def __init__(self, icao24: str, callsign: str, origin_country: str, time_position: str, last_contact: str, longitude: str, latitude: str, baro_altitude: str, on_ground: str, velocity: str, heading: str, vertical_rate: str, sensors: str, geo_altitude: str, squawk: str, spi: str, position_source: str) -> None:
+    def __init__(self, icao24: str = None, callsign: str = None, origin_country: str = None, time_position: str = None, last_contact: str = None, longitude: str = None, latitude: str = None, baro_altitude: str = None, on_ground: str = None, velocity: str = None, heading: str = None, vertical_rate: str = None, sensors: str = None, geo_altitude: str = None, squawk: str = None, spi: str = None, position_source: str = None) -> None:
         self.icao24 = icao24
         self.callsign = callsign
         self.origin_country = origin_country
@@ -16,12 +17,30 @@ class AirData():
         self.on_ground = on_ground
         self.velocity = velocity
         self.heading = heading
-        self.vertical_rate = vertical_rate
+        self.vertical_rate = vertical_rate # * 197 # Adjust to Ft/Min
         self.sensors = sensors
         self.geo_altitude = geo_altitude
         self.squawk = squawk
         self.spi = spi
         self.position_source = position_source
+        
+    def getLongitude(self):
+        return self.longitude
+    
+    def getLatitude(self):
+        return self.latitude
+    
+    def getBaroAltitude(self):
+        return self.baro_altitude
+    
+    def getLanded(self):
+        return self.on_ground
+        
+    def getVelocity(self):
+        try:
+            return int(self.velocity * 1.944) # Adjust to Knots
+        except TypeError:
+            return None
         
     def __str__(self) -> str:
         return str([self.icao24, self.callsign, self.origin_country, self.time_position, self.last_contact, self.longitude, self.latitude, self.baro_altitude, self.on_ground, self.velocity, self.heading, self.vertical_rate, self.sensors, self.geo_altitude, self.squawk, self.spi, self.position_source])
@@ -41,5 +60,8 @@ class Aircraft(threading.Thread):
         
     def getAirData(self) -> AirData:
         states = self.API.get_states(icao24=self.icao24)
-        dictionary = states.states[0].__dict__
+        try:
+            dictionary = states.states[0].__dict__
+        except IndexError:
+            return AirData()
         return AirData(dictionary.get("icao24"), dictionary.get("callsign"), dictionary.get("origin_country"), dictionary.get("time_position"), dictionary.get("last_contact"), dictionary.get("longitude"), dictionary.get("latitude"), dictionary.get("baro_altitude"), dictionary.get("on_ground"), dictionary.get("velocity"), dictionary.get("heading"), dictionary.get("vertical_rate"), dictionary.get("sensors"), dictionary.get("geo_altitude"), dictionary.get("squawk"), dictionary.get("spi"), dictionary.get("position_source"))
