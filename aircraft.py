@@ -42,6 +42,12 @@ class AirData():
         except TypeError:
             return None
         
+    def getVerticalRate(self):
+        try:
+            return int(self.vertical_rate * 197)
+        except TypeError:
+            return None
+        
     def __str__(self) -> str:
         return str([self.icao24, self.callsign, self.origin_country, self.time_position, self.last_contact, self.longitude, self.latitude, self.baro_altitude, self.on_ground, self.velocity, self.heading, self.vertical_rate, self.sensors, self.geo_altitude, self.squawk, self.spi, self.position_source])
 
