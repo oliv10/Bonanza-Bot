@@ -4,4 +4,6 @@ This will be a basic Twitter bot to track the wearabouts of my fathers Aircraft.
 
 This currently uses the OpenSky Network API to get aircraft information, LocationIQ API to do a reverse lookup on the aircrafts location, and Twitter API to make tweets.
 
-# VERY MUCH A WORK IN PROGRESS #
+### VERY MUCH A WORK IN PROGRESS
+
+Currently a mass amount of incomplete code and no main file whatsoever. It's a bunch of pieces split into pieces that I still need to get put together.
