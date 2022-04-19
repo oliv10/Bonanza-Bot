@@ -29,3 +29,30 @@ import json
 "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.712784,-74.005941&rankby=distance&type=airport&key=<Your API Key>"
 
 # Try the google places API to find nearest airport once plane has landed or is no longer detected
+
+
+from geocode import Geocoode
+
+with open("config/config.txt") as file:
+    config = file.readlines()
+
+g = Geocoode(config[1])
+
+data = g.getReverse(-87.6478464, 41.926656)
+
+# print(data.keys())
+# print(data)
+
+with open("keys3.txt", "w") as file:
+    
+    for i in data.keys():
+        print(i)
+        file.write(i + ' = location.get("' + i + '"), ')
+
+locData = g.getLocationData(data)
+
+add = locData.getAddress()
+
+print(add)
+        
+# print(g.getLocationData(data))

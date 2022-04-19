@@ -1,6 +1,5 @@
 import time
 import threading
-from unittest import removeResult
 from opensky.opensky_api import OpenSkyApi
 
 class AirData():
@@ -17,7 +16,7 @@ class AirData():
         self.on_ground = on_ground
         self.velocity = velocity
         self.heading = heading
-        self.vertical_rate = vertical_rate # * 197 # Adjust to Ft/Min
+        self.vertical_rate = vertical_rate
         self.sensors = sensors
         self.geo_altitude = geo_altitude
         self.squawk = squawk
@@ -44,10 +43,20 @@ class AirData():
         
     def getVerticalRate(self):
         try:
+<<<<<<< Updated upstream
             return int(self.vertical_rate * 197)
         except TypeError:
             return None
         
+=======
+            return int(self.vertical_rate * 197) # Adjust to Ft/Min
+        except TypeError:
+            return None
+        
+    def __eq__(self, other) -> bool:
+        return self.last_contact == other.last_contact
+        
+>>>>>>> Stashed changes
     def __str__(self) -> str:
         return str([self.icao24, self.callsign, self.origin_country, self.time_position, self.last_contact, self.longitude, self.latitude, self.baro_altitude, self.on_ground, self.velocity, self.heading, self.vertical_rate, self.sensors, self.geo_altitude, self.squawk, self.spi, self.position_source])
 
@@ -57,10 +66,12 @@ class Aircraft(threading.Thread):
         threading.Thread.__init__(self, daemon=True)
         self.icao24 = icao24
         self.API = OpenSkyApi(username, password)
-        self.currentAirData = None
+        self.currentAirData = AirData()
+        self.previousAirData = AirData()
         
     def run(self):
         while True:
+            self.previousAirData = self.currentAirData
             self.currentAirData = self.getAirData()
             time.sleep(10)
         
