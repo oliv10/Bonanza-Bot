@@ -1,3 +1,2 @@
 icao24
-username
-password
+locationiq_api_key
