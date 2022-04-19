@@ -1,14 +1,6 @@
 import requests
 import json
 
-<<<<<<< Updated upstream
-def reverse(lon: str, lat: str) -> dict:
-    # url = f"https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en"
-    url = f"https://us1.locationiq.com/v1/reverse.php?key=pk.a30d2870922069481cd242be4cdaa9d5&lat={lat}&lon={lon}&addressdetails=0&namedetails=1&normalizeaddress=1&format=json"
-    response = requests.get(url)
-    data = json.loads(response.content.decode(response.encoding))
-    return data
-=======
 class LocationData:
     
     def __init__(self, place_id = None, licence = None, osm_type = None, osm_id = None, lat = None, lon = None, display_name = None, address = None, boundingbox = None) -> None:
@@ -41,4 +33,4 @@ class Geocoode:
     
     def getLocationData(self, location: dict):
         return LocationData(place_id = location.get("place_id"), licence = location.get("licence"), osm_type = location.get("osm_type"), osm_id = location.get("osm_id"), lat = location.get("lat"), lon = location.get("lon"), display_name = location.get("display_name"), address = location.get("address"), boundingbox = location.get("boundingbox"))
->>>>>>> Stashed changes
+
