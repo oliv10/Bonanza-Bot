@@ -23,6 +23,12 @@ class AirData():
         self.spi = spi
         self.position_source = position_source
         
+    def getLastContact(self):
+        try:
+            return int(self.last_contact)
+        except TypeError:
+            return None
+        
     def getLongitude(self):
         return self.longitude
     
