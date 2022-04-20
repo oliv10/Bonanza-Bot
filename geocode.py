@@ -25,12 +25,12 @@ class Geocoode:
     def __init__(self, api) -> None:
         self.API = api
         
-    def getReverse(self, lon, lat) -> dict:
+    def getReverse(self, lon, lat) -> LocationData:
         url = f"https://us1.locationiq.com/v1/reverse.php?key={str(self.API)}&lat={str(lat)}&lon={str(lon)}&zoom=12&normalizeaddress=1&format=json"
         response = requests.get(url)
         data = json.loads(response.content.decode(response.encoding))
-        return data
+        return self.getLocationData(data)
     
-    def getLocationData(self, location: dict):
+    def getLocationData(self, location: dict) -> LocationData:
         return LocationData(place_id = location.get("place_id"), licence = location.get("licence"), osm_type = location.get("osm_type"), osm_id = location.get("osm_id"), lat = location.get("lat"), lon = location.get("lon"), display_name = location.get("display_name"), address = location.get("address"), boundingbox = location.get("boundingbox"))
 
