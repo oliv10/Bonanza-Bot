@@ -1,6 +1,6 @@
 import time
 import threading
-from opensky_api import OpenSkyApi
+from .opensky_api import OpenSkyApi
 
 class AirData():
     
