@@ -1,6 +1,7 @@
 # Manual Adds
 config.txt
 .DS_Store
+/testing
 /twittertest
 *_config.txt
 
