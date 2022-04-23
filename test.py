@@ -34,25 +34,34 @@ import json
 from geocode import Geocoode
 
 with open("config/config.txt") as file:
-    config = file.readlines()
+    data = file.readlines()
+    
+config = []
 
-g = Geocoode(config[1])
+for i in data:
+    config.append(i.strip())
 
-data = g.getReverse(-87.6478464, 41.926656)
+g = Geocoode(config[1]).getReverse(-87.6478464, 41.926656)
+
+print(g.display_name)
+
+# data = g.getReverse(-87.6478464, 41.926656)
 
 # print(data.keys())
 # print(data)
 
-with open("keys3.txt", "w") as file:
+# with open("keys3.txt", "w") as file:
     
-    for i in data.keys():
-        print(i)
-        file.write(i + ' = location.get("' + i + '"), ')
+#     for i in data.keys():
+#         print(i)
+#         file.write(i + ' = location.get("' + i + '"), ')
 
-locData = g.getLocationData(data)
+# locData = g.getLocationData(data)
 
-add = locData.getAddress()
+# add = locData.getAddress()
 
-print(add)
+# print(locData.display_name)
+
+# print(add)
         
 # print(g.getLocationData(data))

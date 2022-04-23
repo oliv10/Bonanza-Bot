@@ -1,6 +1,7 @@
 # Manual Adds
 config.txt
 .DS_Store
+/twittertest
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

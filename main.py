@@ -3,14 +3,19 @@ from aircraft import Aircraft
 from geocode import Geocoode
 
 with open("config/config.txt") as file:
-    config = file.readlines()
+    config_data = file.readlines()
 
-a = Aircraft("a8d234")
+config = []
+
+for i in config_data:
+    config.append(i.strip())
+
+a = Aircraft("a769d9")
 a.start()
 
 g = Geocoode(config[1])
 
-# time.sleep(3)
+time.sleep(3)
 
 
 while True:
